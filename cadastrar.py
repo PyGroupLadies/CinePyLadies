@@ -3,26 +3,39 @@ print('Cadastrando filme')
 nota = 0
 lista_filmes = []
 
+nome_filme = input('Digite o nome do filme:')
+lista_filmes.append(nome_filme)
 
-# nome_filme = input('Digite o nome do filme:')
-# lista_filmes.append(nome_filme)
+genero = input('Informe o gênero do filme. \n Ex: Ação|Romance|Drama \n')
+if genero.isalpha() :
+    lista_filmes.append(genero) 
+else:
+    print('ERRO! Gênero deve ser informado por letras.')
 
-# genero = input('Informe o gênero do filme: \n Ex: Ação|Romance|Drama')
-# lista_filmes.append(genero)
+ano_lancamento = input('Informe o ano de lançamento do filme: ')
 
-# ano_lancamento = input('Informe o ano de lançamento do filme: ')
-# lista_filmes.append(ano_lancamento)
+if ano_lancamento.isnumeric() :
+    lista_filmes.append(ano_lancamento) 
+else:
+    print('ERRO! O ano de lançamento do filme deve ser informado em minutos.')
 
-duracao = input('Informe o tempo de duração do filme. \n obs: Informe em minutos.\n ')
-lista_filmes.append(duracao)
+duracao = input('Informe o tempo de duração do filme:')
 
-# if nota <1 and nota >5:
-#     print('Nota inválida! \n Escolha uma nota em 1 a 5.')
+if duracao.isnumeric():
+    lista_filmes.append(duracao) 
+else:
+    print('ERRO! Duração deve ser informada em minutos')
 
-# sinope = lista_filmes.append()
+nota = int(input('Informe a nota do filme de 1 a 5: '))
+if nota <1 or nota >5:
+     print('Nota inválida! \n Escolha uma nota entre 1 e 5.')
 
-# Colocar uma mensagem no final informando que deu tudo certo
-# colocar condições caso o usuario não digite algo certo
-# Arrumar os input para ficarem visualmente bonitos
-print(lista_filmes)
+sinopse = input('Informe a sinopse do filme.\n(Esta opção não é obrigatória!)\n') 
+lista_filmes.append(sinopse)
 
+for id, filme in enumerate(lista_filmes, start=1):
+    filme('') == id
+    print(f"{id} - {filme}")
+
+ # arrumar o id dos filmes 
+print('Filme cadastrado com sucesso!')
