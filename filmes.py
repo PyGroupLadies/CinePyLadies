@@ -1,3 +1,6 @@
+lista_filmes = []
+filmes = []
+
 class Filmes:
     def __init__(self, nome_filme, genero,ano_lancamento, duracao, nota, sinopse):
         self.nome_filme = nome_filme
@@ -10,7 +13,6 @@ class Filmes:
 def CadastrarFilme():
     print('Cadastrando filme')
     nota = 0
-    lista_filmes = []
 
     nome_filme = input('Digite o nome do filme:')
     lista_filmes.append(nome_filme)
@@ -26,14 +28,14 @@ def CadastrarFilme():
     if ano_lancamento.isnumeric() :
         lista_filmes.append(ano_lancamento) 
     else:
-        print('ERRO! O ano de lançamento do filme deve ser informado em minutos.')
+        print('ERRO! O ano de lançamento do filme deve ser informado números.')
 
     duracao = input('Informe o tempo de duração do filme:')
 
     if duracao.isnumeric():
         lista_filmes.append(duracao) 
     else:
-        print('ERRO! Duração deve ser informada em minutos')
+        print('ERRO! A duração deve ser informada em minutos')
 
     nota = int(input('Informe a nota do filme de 1 a 5: '))
     if nota <1 or nota >5:
@@ -42,12 +44,16 @@ def CadastrarFilme():
     sinopse = input('Informe a sinopse do filme.\n(Esta opção não é obrigatória!)\n') 
     lista_filmes.append(sinopse)
 
-    '''for id, filme in enumerate(lista_filmes, start=1):
-        filme('') == id
-        print(f"{id} - {filme}")'''
-        # arrumar o id dos filmes
-
     filme_cadastrado = Filmes(nome_filme, genero, ano_lancamento, duracao, nota, sinopse)
-    print(f"Filme '{filme_cadastrado.nome_filme}' cadastrado com sucesso!")
+    lista_filmes.append(filme_cadastrado)
 
+    print(f"Filme '{filme_cadastrado.nome_filme}' cadastrado com sucesso!")
+    filmes.append(filme_cadastrado)
+    
 CadastrarFilme()
+
+for indice, filme in enumerate(filmes, start=1):
+    print(f'{indice} - {filme.nome_filme}')
+
+
+
