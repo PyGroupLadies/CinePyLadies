@@ -56,4 +56,10 @@ for indice, filme in enumerate(filmes, start=1):
     print(f'{indice} - {filme.nome_filme}')
 
 
+def ListarFilmes():
+    if not filmes:
+        print("Nenhum filme encontrado.")
+        return
 
+    for filme in filmes:
+        print(filme.nome_filme, filme.genero, filme.ano_lancamento, filme.duracao, filme.nota, filme.sinopse)
