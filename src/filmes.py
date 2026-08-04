@@ -49,11 +49,9 @@ def CadastrarFilme():
 
     print(f"Filme '{filme_cadastrado.nome_filme}' cadastrado com sucesso!")
     filmes.append(filme_cadastrado)
-    
-CadastrarFilme()
 
-for indice, filme in enumerate(filmes, start=1):
-    print(f'{indice} - {filme.nome_filme}')
+    for indice, filme in enumerate(filmes, start=1):
+        print(f'{indice} - {filme.nome_filme}')
 
 
 def ListarFilmes():
@@ -63,3 +61,29 @@ def ListarFilmes():
 
     for filme in filmes:
         print(filme.nome_filme, filme.genero, filme.ano_lancamento, filme.duracao, filme.nota, filme.sinopse)
+
+def FiltrarFilmes():
+
+    if not filmes:
+        print("Nenhum filme cadastrado.")
+        return
+
+    print("==== Filtrar por ====")
+    print("[1] Gênero")
+    print("[2] Ano")
+
+    escolha = input("Escolha uma opção: ")    
+
+    if escolha == "1":
+        genero_filtro = input("Digite o gênero do filme: ")
+        generos_encontrados = list(filter(lambda filme: filme.genero.lower() == genero_filtro.lower() , filmes))
+        for filme in generos_encontrados:
+            print(filme.nome_filme, filme.genero, filme.ano_lancamento, filme.duracao, filme.nota, filme.sinopse)
+    
+    elif escolha == "2":
+        ano_filtro = input("Digite o ano lançamento do filme: ")
+        anos_encontrados = list(filter(lambda filme: filme.ano_lancamento == ano_filtro , filmes))
+        for filme in anos_encontrados:
+            print(filme.nome_filme, filme.genero, filme.ano_lancamento, filme.duracao, filme.nota, filme.sinopse)
+    else:
+        print("Opção inválida.")
