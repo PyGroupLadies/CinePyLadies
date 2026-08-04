@@ -1,3 +1,4 @@
+from filmes import CadastrarFilme, ListarFilme, EditarFilme, FiltrarFilme, ExcluirFilme
 
 print('~'* 40)
 print(f'{"CINE PY LADIES":^40}')
@@ -14,22 +15,19 @@ while True:
     opcao = int(input('Escolha sua opção: '))
 
     if opcao == 1:
-        print(f'Cadastrar')
+        CadastrarFilme()
 
     elif opcao == 2:
-        print(f'Listar')
+        ListarFilme()
 
     elif opcao == 3:
-        print(f'Editar')
+        EditarFilme()
 
     elif opcao == 4:
-        print('''Filtrar por: 
-    [1]Ano
-    [2]Gênero''')
-        escolha = (int(input('Escolha sua opção:')))
-
+        FiltrarFilme()
+              
     elif opcao == 5:
-        print(f'Excluir')
+        ExcluirFilme()
 
     elif opcao == 0:
         print('Finalizando...')
@@ -39,5 +37,3 @@ while True:
         print('Opção inválida, tente novamente!') 
 print('Até a próxima!')
 print('-'* 40)  
-
- 
