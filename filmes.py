@@ -30,16 +30,24 @@ def CadastrarFilme():
     else:
         print('ERRO! O ano de lançamento do filme deve ser informado números.')
 
-    duracao = input('Informe o tempo de duração do filme:')
+    while True:
+        try:
+            duracao = int(input('Informe o tempo de duração do filme.\n Obs: a duração deve ser em minutos \n'))
+            lista_filmes.append(duracao) 
 
-    if duracao.isnumeric():
-        lista_filmes.append(duracao) 
-    else:
-        print('ERRO! A duração deve ser informada em minutos')
+            if str(duracao).isnumeric():
+                ...
+            break 
+        except ValueError:
+            print('ERRO! A duração deve ser informada em minutos')
 
-    nota = int(input('Informe a nota do filme de 1 a 5: '))
-    if nota <1 or nota >5:
-        print('Nota inválida! \n Escolha uma nota entre 1 e 5.')
+    while True:
+        try:
+            nota = int(input('Informe a nota do filme de 1 a 5: '))
+            break
+        except ValueError:
+            if nota <1 or nota >5:
+                print('Nota inválida! \n Escolha uma nota entre 1 e 5.')
 
     sinopse = input('Informe a sinopse do filme.\n(Esta opção não é obrigatória!)\n') 
     lista_filmes.append(sinopse)
