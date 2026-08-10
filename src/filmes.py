@@ -60,7 +60,16 @@ def ListarFilmes():
         return
 
     for filme in filmes:
-        print(filme.nome_filme, filme.genero, filme.ano_lancamento, filme.duracao, filme.nota, filme.sinopse)
+        print(f"""
+        {{
+            "Nome":{filme.nome_filme}, 
+            "Genêro":{filme.genero}, 
+            "Ano de Lançamento":{filme.ano_lancamento}, 
+            "Duração":{filme.duracao}, 
+            "Nota":{filme.nota}, 
+            "Sinopse":{filme.sinopse}
+        }}
+            """)
 
 def FiltrarFilmes():
 
@@ -72,18 +81,44 @@ def FiltrarFilmes():
     print("[1] Gênero")
     print("[2] Ano")
 
-    escolha = input("Escolha uma opção: ")    
+    escolha = input("Escolha uma opção: ")
 
     if escolha == "1":
-        genero_filtro = input("Digite o gênero do filme: ")
-        generos_encontrados = list(filter(lambda filme: filme.genero.lower() == genero_filtro.lower() , filmes))
-        for filme in generos_encontrados:
-            print(filme.nome_filme, filme.genero, filme.ano_lancamento, filme.duracao, filme.nota, filme.sinopse)
-    
+        filtro = input("Digite o gênero do filme: ").strip().lower()
+
+        resultados = [
+            filme for filme in filmes
+            if filme.genero.strip().lower() == filtro
+        ]
+
     elif escolha == "2":
-        ano_filtro = input("Digite o ano lançamento do filme: ")
-        anos_encontrados = list(filter(lambda filme: filme.ano_lancamento == ano_filtro , filmes))
-        for filme in anos_encontrados:
-            print(filme.nome_filme, filme.genero, filme.ano_lancamento, filme.duracao, filme.nota, filme.sinopse)
+        try:
+            filtro = int(input("Digite o ano de lançamento do filme: "))
+        except ValueError:
+            print("Ano inválido.")
+            return
+
+        resultados = [
+            filme for filme in filmes
+            if int(filme.ano_lancamento) == filtro
+        ]
+
     else:
         print("Opção inválida.")
+        return
+
+    if not resultados:
+        print("Nenhum filme encontrado.")
+        return
+
+    for filme in resultados:
+        print(f"""
+                {{
+                    "Nome": {filme.nome_filme},
+                    "Gênero": {filme.genero},
+                    "Ano de Lançamento": {filme.ano_lancamento},
+                    "Duração": {filme.duracao},
+                    "Nota": {filme.nota},
+                    "Sinopse": {filme.sinopse}
+                }}
+              """)
