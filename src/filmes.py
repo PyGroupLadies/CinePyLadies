@@ -19,7 +19,7 @@ def EditarFilme():
     except ValueError:
         print('ERRO! O ID deve ser um número inteiro.')
         return
-
+      
     filme_encontrado = None
     
     for filme in filmes:
@@ -78,4 +78,10 @@ def EditarFilme():
 
     print("\nFilme atualizado com sucesso!")
 
-EditarFilme()
+def ListarFilmes():
+    if not filmes:
+        print("Nenhum filme encontrado.")
+        return
+
+    for filme in filmes:
+        print(filme.nome_filme, filme.genero, filme.ano_lancamento, filme.duracao, filme.nota, filme.sinopse)
