@@ -16,7 +16,7 @@ def gerar_novo_id():
     return max(filme.id for filme in filmes) + 1
 
 def CadastrarFilme():
-    print('Cadastrando filme')
+    print('\n--- Cadastrando filme ---')
 
     nome_filme = input('Digite o nome do filme: ')
 
@@ -54,9 +54,5 @@ def CadastrarFilme():
     filmes.append(filme_cadastrado)
 
     print(f"Filme '{filme_cadastrado.nome_filme}' cadastrado com sucesso com ID {filme_cadastrado.id}!")
-
-print("\n--- Informações cadastradas ---")
-for filme in filmes:
-    print(f'ID: {filme.id} | Nome: {filme.nome_filme}')
 
 CadastrarFilme()
