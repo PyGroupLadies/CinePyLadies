@@ -10,56 +10,7 @@ class Filmes:
         self.nota = nota
         self.sinopse = sinopse
 
-def gerar_novo_id():
-    if not filmes:
-        return 1
-    return max(filme.id for filme in filmes) + 1
-
-def CadastrarFilme():
-    print('Cadastrando filme')
-
-    nome_filme = input('Digite o nome do filme: ')
-
-    genero = input('Informe o gênero do filme. \n Ex: Ação|Romance|Drama \n')
-    if not genero.isalpha():
-         print('ERRO! Gênero deve ser informado por letras.')
-
-    ano_lancamento = input('Informe o ano de lançamento do filme: ')
-    if not ano_lancamento.isnumeric():
-         print('ERRO! O ano de lançamento do filme deve ser informado em números.')
-
-    while True:
-        try:
-            duracao = int(input('Informe o tempo de duração do filme em minutos: \n'))
-            break
-        except ValueError:
-            print('ERRO! A duração deve ser informada em números inteiros.')
-
-    while True:
-        try:
-            nota = int(input('Informe a nota do filme de 1 a 5: '))
-            if nota < 1 or nota > 5:
-                print('Nota inválida! Escolha uma nota entre 1 e 5.')
-            else:
-                break
-        except ValueError:
-            print('ERRO! Digite um número válido.')
-
-    sinopse = input('Informe a sinopse do filme (Opcional): \n')
-
-    id_gerado = gerar_novo_id()
-
-    filme_cadastrado = Filmes(id_gerado, nome_filme, genero, ano_lancamento, duracao, nota, sinopse)
-
-    filmes.append(filme_cadastrado)
-
-    print(f"Filme '{filme_cadastrado.nome_filme}' cadastrado com sucesso com ID {filme_cadastrado.id}!")
-
-print("\n--- Informações cadastradas ---")
-for filme in filmes:
-    print(f'ID: {filme.id} | Nome: {filme.nome_filme}')
-
-#inicio editar! 
+#inicio do editar! 
 def EditarFilme():
     print('\n--- Editando filme ---')
     
@@ -91,7 +42,7 @@ def EditarFilme():
         filme_encontrado.genero = novo_genero
 
     novo_ano = input(f"Ano atual ({filme_encontrado.ano_lancamento}) -> Novo ano: ")
-    if novo_ano != "":
+    if novo_ano != "": 
         if novo_ano.isnumeric():
             filme_encontrado.ano_lancamento = novo_ano
         else:
@@ -121,11 +72,10 @@ def EditarFilme():
         else:
             print("ERRO! Digite um número inteiro.")
 
-    nova_sinopse = input(f"Sinopse atual ({filme_encontrado.sinopse}) - Nova sinopse: ")
+    nova_sinopse = input(f"Sinopse atual ({filme_encontrado.sinopse}) -> Nova sinopse: ")
     if nova_sinopse != "":
         filme_encontrado.sinopse = nova_sinopse
 
     print("\nFilme atualizado com sucesso!")
 
-CadastrarFilme()
 EditarFilme()
