@@ -56,20 +56,58 @@ def CadastrarFilme():
     print(f"Filme '{filme_cadastrado.nome_filme}' cadastrado com sucesso com ID {filme_cadastrado.id}!")
 
 
-def ListarFilmes():
+def FiltrarFilmes():
+
     if not filmes:
+        print("Nenhum filme cadastrado.")
+        return
+
+    print("==== Filtrar por ====")
+    print("[1] Gênero")
+    print("[2] Ano")
+
+    escolha = input("Escolha uma opção: ")
+
+    if escolha == "1":
+        filtro = input("Digite o gênero do filme: ").strip().lower()
+
+        resultados = [
+            filme for filme in filmes
+            if filme.genero.strip().lower() == filtro
+        ]
+
+    elif escolha == "2":
+        try:
+            filtro = int(input("Digite o ano de lançamento do filme: "))
+        except ValueError:
+            print("Ano inválido.")
+            return
+
+        resultados = [
+            filme for filme in filmes
+            if int(filme.ano_lancamento) == filtro
+        ]
+
+    else:
+        print("Opção inválida.")
+        return
+
+    if not resultados:
         print("Nenhum filme encontrado.")
         return
 
-    for filme in filmes:
+    for filme in resultados:
         print(f"""
-        {{
-            "ID":{filme.id},
-            "Nome":{filme.nome_filme}, 
-            "Genêro":{filme.genero}, 
-            "Ano de Lançamento":{filme.ano_lancamento}, 
-            "Duração":{filme.duracao}, 
-            "Nota":{filme.nota}, 
-            "Sinopse":{filme.sinopse}
-        }}
-            """)
+                {{
+                    "ID": {filme.id},
+                    "Nome": {filme.nome_filme},
+                    "Gênero": {filme.genero},
+                    "Ano de Lançamento": {filme.ano_lancamento},
+                    "Duração": {filme.duracao},
+                    "Nota": {filme.nota},
+                    "Sinopse": {filme.sinopse}
+                }}
+              """)
+
+CadastrarFilme()
+FiltrarFilmes()
