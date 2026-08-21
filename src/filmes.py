@@ -73,6 +73,3 @@ def ListarFilmes():
             "Sinopse":{filme.sinopse}
         }}
             """)
-
-CadastrarFilme()
-ListarFilmes()
