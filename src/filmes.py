@@ -10,73 +10,51 @@ class Filmes:
         self.nota = nota
         self.sinopse = sinopse
 
-#inicio do editar! 
-def EditarFilme():
-    print('\n--- Editando filme ---')
-    
-    try:
-        id_busca = int(input('Digite o ID do filme que deseja editar: '))
-    except ValueError:
-        print('ERRO! O ID deve ser um número inteiro.')
-        return
-      
-    filme_encontrado = None
-    
-    for filme in filmes:
-        if filme.id == id_busca:
-            filme_encontrado = filme
-            break
+def gerar_novo_id():
+    if not filmes:
+        return 1
+    return max(filme.id for filme in filmes) + 1
 
-    if not filme_encontrado:
-        print('ID não encontrado!')
-        return
+def CadastrarFilme():
+    print('\n--- Cadastrando filme ---')
 
-    print(f"\nEditando o filme: {filme_encontrado.nome_filme}")
-  
-    novo_nome = input(f"Nome atual ({filme_encontrado.nome_filme}) -> Novo nome: ")
-    if novo_nome != "":
-        filme_encontrado.nome_filme = novo_nome
+    nome_filme = input('Digite o nome do filme: ')
 
-    novo_genero = input(f"Gênero atual ({filme_encontrado.genero}) -> Novo gênero: ")
-    if novo_genero != "":
-        filme_encontrado.genero = novo_genero
+    genero = input('Informe o gênero do filme. \n Ex: Ação|Romance|Drama \n')
+    if not genero.isalpha():
+         print('ERRO! Gênero deve ser informado por letras.')
 
-    novo_ano = input(f"Ano atual ({filme_encontrado.ano_lancamento}) -> Novo ano: ")
-    if novo_ano != "": 
-        if novo_ano.isnumeric():
-            filme_encontrado.ano_lancamento = novo_ano
-        else:
-            print("ERRO! Como o valor não é numérico, o ano antigo será mantido.")
+    ano_lancamento = input('Informe o ano de lançamento do filme: ')
+    if not ano_lancamento.isnumeric():
+         print('ERRO! O ano de lançamento do filme deve ser informado em números.')
 
     while True:
-        nova_duracao = input(f"Duração atual ({filme_encontrado.duracao} min) -> Nova duração: ")
-        if nova_duracao == "":
-            break 
-        if nova_duracao.isnumeric():
-            filme_encontrado.duracao = int(nova_duracao)
+        try:
+            duracao = int(input('Informe o tempo de duração do filme em minutos: \n'))
             break
-        else:
-            print("ERRO! A duração deve ser um número inteiro.")
+        except ValueError:
+            print('ERRO! A duração deve ser informada em números inteiros.')
 
     while True:
-        nova_nota = input(f"Nota atual ({filme_encontrado.nota}) -> Nova nota (1 a 5): ")
-        if nova_nota:
-            break 
-        if nova_nota.isnumeric():
-            nota_int = int(nova_nota)
-            if 1 <= nota_int <= 5:
-                filme_encontrado.nota = nota_int
-                break
+        try:
+            nota = int(input('Informe a nota do filme de 1 a 5: '))
+            if nota < 1 or nota > 5:
+                print('Nota inválida! Escolha uma nota entre 1 e 5.')
             else:
-                print("Nota inválida! Escolha uma nota entre 1 e 5.")
-        else:
-            print("ERRO! Digite um número inteiro.")
+                break
+        except ValueError:
+            print('ERRO! Digite um número válido.')
 
-    nova_sinopse = input(f"Sinopse atual ({filme_encontrado.sinopse}) -> Nova sinopse: ")
-    if nova_sinopse != "":
-        filme_encontrado.sinopse = nova_sinopse
+    sinopse = input('Informe a sinopse do filme (Opcional): \n')
 
-    print("\nFilme atualizado com sucesso!")
+    id_gerado = gerar_novo_id()
+
+    filme_cadastrado = Filmes(id_gerado, nome_filme, genero, ano_lancamento, duracao, nota, sinopse)
+
+    filmes.append(filme_cadastrado)
+
+    print(f"Filme '{filme_cadastrado.nome_filme}' cadastrado com sucesso com ID {filme_cadastrado.id}!")
+
 
 def ListarFilmes():
     if not filmes:
@@ -84,4 +62,14 @@ def ListarFilmes():
         return
 
     for filme in filmes:
-        print(filme.nome_filme, filme.genero, filme.ano_lancamento, filme.duracao, filme.nota, filme.sinopse)
+        print(f"""
+        {{
+            "ID":{filme.id},
+            "Nome":{filme.nome_filme}, 
+            "Genêro":{filme.genero}, 
+            "Ano de Lançamento":{filme.ano_lancamento}, 
+            "Duração":{filme.duracao}, 
+            "Nota":{filme.nota}, 
+            "Sinopse":{filme.sinopse}
+        }}
+            """)
