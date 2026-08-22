@@ -32,7 +32,6 @@ while True:
     elif opcao == 0:
         print('Finalizando...')
         break
-
     else:
         print('Opção inválida, tente novamente!') 
 print('Até a próxima!')
