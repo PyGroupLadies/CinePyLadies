@@ -193,3 +193,29 @@ def EditarFilme():
         filme_encontrado.sinopse = nova_sinopse
 
     print("\nFilme atualizado com sucesso!")
+
+def ExcluirFilme():
+    print('\n--- Excluindo filme ---')
+    
+    if not filmes:
+        print("Nenhum filme cadastrado para excluir.")
+        return
+
+    try:
+        id_busca = int(input('Digite o ID do filme que deseja excluir: '))
+    except ValueError:
+        print('ERRO! O ID deve ser um número inteiro.')
+        return
+
+    for filme in filmes:
+        if filme.id == id_busca:
+            # Confirmação de segurança antes de deletar
+            confirmacao = input(f"Tem certeza que deseja excluir '{filme.nome_filme}'? (S/N): ").strip().upper()
+            if confirmacao == 'S':
+                filmes.remove(filme)
+                print(f"Filme '{filme.nome_filme}' excluído com sucesso!")
+            else:
+                print("Operação cancelada.")
+            return
+
+    print('ERRO! Filme com o ID informado não foi encontrado.')
