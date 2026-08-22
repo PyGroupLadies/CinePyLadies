@@ -1,5 +1,4 @@
-
-from filmes import CadastrarFilme, ListarFilme, EditarFilme, FiltrarFilme, ExcluirFilme
+from filmes import CadastrarFilme, ListarFilmes, EditarFilme, FiltrarFilmes, ExcluirFilme
 
 print('~'* 40)
 print(f'{"CINE PY LADIES":^40}')
@@ -19,13 +18,13 @@ while True:
         CadastrarFilme()
 
     elif opcao == 2:
-        ListarFilme()
+        ListarFilmes()
 
     elif opcao == 3:
         EditarFilme()
 
     elif opcao == 4:
-        FiltrarFilme()
+        FiltrarFilmes()
               
     elif opcao == 5:
         ExcluirFilme()
