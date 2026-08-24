@@ -60,11 +60,11 @@ def EditarFilme():
 
     while True:
         nova_nota = input(f"Nota atual ({filme_encontrado.nota}) -> Nova nota (1 a 5): ")
-        if nova_nota:
-            break 
+
         if nova_nota.isnumeric():
             nota_int = int(nova_nota)
-            if 1 <= nota_int <= 5:
+            
+            if nova_nota < 1 or nova_nota > 5:
                 filme_encontrado.nota = nota_int
                 break
             else:
