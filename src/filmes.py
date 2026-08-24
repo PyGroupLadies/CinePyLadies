@@ -64,11 +64,11 @@ def EditarFilme():
         if nova_nota.isnumeric():
             nota_int = int(nova_nota)
             
-            if nova_nota < 1 or nova_nota > 5:
-                filme_encontrado.nota = nota_int
-                break
+            if nota_int< 1 or nota_int > 5:
+               print("Nota inválida! Escolha uma nota entre 1 e 5.")
             else:
-                print("Nota inválida! Escolha uma nota entre 1 e 5.")
+                filme_encontrado.nota = nota_int
+            break
         else:
             print("ERRO! Digite um número inteiro.")
 
