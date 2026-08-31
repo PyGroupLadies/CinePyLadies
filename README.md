@@ -18,8 +18,8 @@ O projeto **CinePyLadies** é um sistema feito em grupo que permite que usuário
 | **Linguagem de programação**  | Python 3.11            |
 | **Controle de versionamento** | Git     |
 | **IDE**                       | VS Code |
-| **Trello** | Ferramenta de visualização em tempo real da equipe           |
-| **GitHub**                       | Local de armazenamento em nuvem do código |
+| **Trello** | Ferramenta visual de gerenciamento de tarefas |
+| **GitHub** | Local de armazenamento em nuvem do código |
 
 <br />
 
